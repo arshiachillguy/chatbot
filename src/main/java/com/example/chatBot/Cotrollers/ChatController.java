@@ -15,13 +15,6 @@ public class ChatController {
     @Autowired
     public ChatService chatService;
 
-//    @Autowired
-//    public ChatRequest chatRequest;
-//
-//    @Autowired
-//    public ChatResponse chatResponse;
-
-
     @PostMapping("api/chat")
     public ChatResponse postRequest(ChatRequest request){
        String userMassage = request.getMessage();
