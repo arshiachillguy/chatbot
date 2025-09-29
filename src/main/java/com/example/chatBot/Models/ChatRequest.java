@@ -1,6 +1,9 @@
 package com.example.chatBot.Models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class ChatRequest {
+    @JsonProperty("message")
     private String message;
 
     public ChatRequest(String message) {
