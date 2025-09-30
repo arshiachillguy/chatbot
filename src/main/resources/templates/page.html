@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fa" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>simple chat bot</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        body {
+            background: #1a1a2e;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+        .chat-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 500px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+        input {
+            width: 70%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #e1e1e1;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+        button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            transform: translateY(-2px);
+        }
+        .response {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-right: 4px solid #667eea;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+<div class="stars">
+    <div class="star" style="width: 2px; height: 2px; left: 10%; top: 20%; animation-delay: 0s;"></div>
+    <div class="star" style="width: 1px; height: 1px; left: 30%; top: 50%; animation-delay: 1s;"></div>
+    <div class="star" style="width: 3px; height: 3px; left: 50%; top: 70%; animation-delay: 2s;"></div>
+    <div class="star" style="width: 2px; height: 2px; left: 70%; top: 30%; animation-delay: 1.5s;"></div>
+    <div class="star" style="width: 1px; height: 1px; left: 90%; top: 10%; animation-delay: 0.5s;"></div>
+</div>
+
+<div class="chat-container">
+    <h1>🤖 simple chatbot </h1>
+    <form th:action="@{/api/chat}" th:object="${chatRequestForm}" method="post">
+        <input type="text" th:field="*{message}" placeholder="write your message here..." autocomplete="off">
+        <button type="submit">send</button>
+    </form>
+    <div class="response" th:if="${response}" th:text="${response}">response will show here : </div>
+</div>
+</body>
+</html>
